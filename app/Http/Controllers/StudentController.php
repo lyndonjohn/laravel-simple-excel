@@ -52,19 +52,8 @@ class StudentController extends Controller
             'Address',
             'Created At'
         ];
-        $rows = [];
-        Student::chunk(1000, function ($students) use (&$rows) {
-                foreach ($students->toArray() as $student) {
-                    $rows[] = [
-                        $student['first_name'],
-                        $student['last_name'],
-                        $student['email'],
-                        ucfirst($student['gender']),
-                        $student['address'],
-                        (new \DateTime($student['created_at']))->format('F d, Y')
-                    ];
-                }
-            });
+
+        $rows = session('students');
 
         SimpleExcelWriter::streamDownload('students_' . now()->format('ymd_His') . '.csv')
             ->noHeaderRow()
