@@ -44,25 +44,31 @@ class StudentController extends Controller
 
     public function export()
     {
+        $heading = [
+            'First Name',
+            'Last Name',
+            'Email',
+            'Gender',
+            'Address',
+            'Created At'
+        ];
         $rows = [];
-        Student::select(['first_name', 'last_name', 'email', 'gender', 'address', 'created_at'])
-            ->chunk(1000, function ($students) use (&$rows) {
+        Student::chunk(1000, function ($students) use (&$rows) {
                 foreach ($students->toArray() as $student) {
-                    if ($student['created_at']) {
-                        $student['created_at'] = (new \DateTime($student['created_at']))->format('F d, Y');
-                    }
-
-                    if ($student['gender']) {
-                        $student['gender'] = ucfirst($student['gender']);
-                    }
-
-                    $rows[] = $student;
+                    $rows[] = [
+                        $student['first_name'],
+                        $student['last_name'],
+                        $student['email'],
+                        ucfirst($student['gender']),
+                        $student['address'],
+                        (new \DateTime($student['created_at']))->format('F d, Y')
+                    ];
                 }
             });
 
         SimpleExcelWriter::streamDownload('students_' . now()->format('ymd_His') . '.csv')
             ->noHeaderRow()
-            ->addRow(['First Name', 'Last Name', 'Email', 'Gender', 'Address', 'Created At'])
+            ->addRow($heading)
             ->addRows($rows)
             ->toBrowser();
     }
