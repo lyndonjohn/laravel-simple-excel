@@ -25,7 +25,7 @@
                     <span class="small text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-                <div class="col-6 d-flex justify-content-start">
+                <div class="col-6">
                     <button type="submit" class="btn btn-primary">Import</button>
                     <a href="{{ route('export') }}" class="btn btn-secondary ms-2">Export Students</a>
                 </div>
