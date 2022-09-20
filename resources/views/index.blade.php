@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="container mt-3">
-    <h3><a href="https://github.com/lyndonjohn/simple-excel" target="_blank">Laravel - Simple Excel</a></h3>
+    <h3><a href="https://github.com/spatie/simple-excel" target="_blank">Laravel - Simple Excel</a></h3>
     <div class="w-50 mt-4">
         @if(session('message'))
             <div class="alert alert-success p-2 mb-3">{{ session('message') }}</div>
