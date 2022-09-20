@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container mt-3">
-    <h3><a href="https://github.com/lyndonjohn/simple-excel" target="_blank">Laravel - Simple Excel</a></h3>
+    <h3><a href="https://github.com/spatie/simple-excel" target="_blank">Laravel - Simple Excel</a></h3>
     <div class="w-50 mt-4">
         @livewire('export')
     </div>
